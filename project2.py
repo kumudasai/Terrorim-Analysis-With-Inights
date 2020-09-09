@@ -16,14 +16,14 @@ import plotly.express as px
 from dash.exceptions import PreventUpdate
 
 
-# Global variables
+
 app = dash.Dash()
 
 
 def load_data():
   dataset_name = "global_terror1.csv"
 
-  #this line we use to hide some warnings which gives by pandas
+ 
   pd.options.mode.chained_assignment = None
   
   global df
@@ -250,7 +250,7 @@ def app_ui():
   return main_layout
 
 
-# Callback of your page
+
 @app.callback(dash.dependencies.Output('graph-object', 'children'),
     [
      dash.dependencies.Input("Tabs", "value"),
@@ -298,11 +298,11 @@ def def_app_ui(Tabs, month_value, date_value,region_value,country_value,state_va
         
         print("Data Type of year value = " , str(type(year_value)))
         print("Data of year value = " , year_value)
-        # year_filter
+        
         year_range = range(year_value[0], year_value[1]+1)
         new_df = df[df["iyear"].isin(year_range)]
         
-        # month_filter
+        
         if month_value==[] or month_value is None:
             pass
         else:
@@ -311,7 +311,7 @@ def def_app_ui(Tabs, month_value, date_value,region_value,country_value,state_va
             else:
                 new_df = new_df[new_df["imonth"].isin(month_value)
                                 & (new_df["iday"].isin(date_value))]
-        # region, country, state, city filter
+        
         if region_value==[] or region_value is None:
             pass
         else:
@@ -443,7 +443,6 @@ def set_country(region_value):
     Output('state-dropdown', 'options'),
     [Input('country-dropdown', 'value')])
 def set_state(country_value):
-  # Making the state Dropdown data
     option = []
     if country_value is None :
         raise PreventUpdate
@@ -457,7 +456,6 @@ def set_state(country_value):
     Output('city-dropdown', 'options'),
     [Input('state-dropdown', 'value')])
 def set_city(state_value):
-  # Making the city Dropdown data
     option = []
     if state_value is None:
         raise PreventUpdate
@@ -467,7 +465,6 @@ def set_city(state_value):
                 option.extend(city_list[var])
     return [{'label':m , 'value':m} for m in option]
 
-# Flow of your Project
 def main():
   print("Welcome")
   load_data()
@@ -477,7 +474,7 @@ def main():
   global app
   app.layout = app_ui()
   app.title = "Terrorism Analysis with Insights"
-  app.run_server() # debug=True
+  app.run_server() 
 
   print("Thanks")
   df = None
