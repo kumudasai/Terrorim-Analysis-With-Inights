@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Sep  8 22:12:05 2020
+Created on Mon Sep 7  22:12:05 2020
 
 @author: kumud
 """
@@ -120,7 +120,6 @@ def load_data():
 def open_browser():
   webbrowser.open_new('http://127.0.0.1:8050/')
 
-# Layout of your page
 def app_ui():
   main_layout = html.Div(
       style = {'backgroundColor':'#25383C'},
@@ -193,7 +192,7 @@ def app_ui():
                           ),
                   dcc.Dropdown(
                         id='attacktype-dropdown', 
-                        options=attack_type_list,#[{'label': 'All', 'value': 'All'}],
+                        options=attack_type_list[{'label': 'All', 'value': 'All'}],
                         placeholder='Select Attack Type',
                         style = {'width': 300, 'borderRadius': '15px'},
                         multi = True
